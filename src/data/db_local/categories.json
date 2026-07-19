@@ -1,0 +1,20 @@
+[
+  {
+    "id": "cat-1",
+    "nameUz": "Sedan",
+    "nameRu": "Седан",
+    "nameEn": "Sedan"
+  },
+  {
+    "id": "cat-2",
+    "nameUz": "SUV / Krossover",
+    "nameRu": "Внедорожник / Кроссовер",
+    "nameEn": "SUV / Crossover"
+  },
+  {
+    "id": "cat-3",
+    "nameUz": "Premium",
+    "nameRu": "Премиум",
+    "nameEn": "Premium"
+  }
+]

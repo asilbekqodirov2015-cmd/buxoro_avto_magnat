@@ -1,0 +1,30 @@
+[
+  {
+    "id": "col-1",
+    "nameUz": "Qora metallik (GB0)",
+    "nameRu": "Черный металлик",
+    "nameEn": "Black Metallic",
+    "hexCode": "#111111"
+  },
+  {
+    "id": "col-2",
+    "nameUz": "Oq (GAZ)",
+    "nameRu": "Белый",
+    "nameEn": "White Pearl",
+    "hexCode": "#FFFFFF"
+  },
+  {
+    "id": "col-3",
+    "nameUz": "To'q kulrang (GYM)",
+    "nameRu": "Темно-серый (моккрый асфальт)",
+    "nameEn": "Dark Grey",
+    "hexCode": "#4A4A4A"
+  },
+  {
+    "id": "col-4",
+    "nameUz": "Chevrolet Oltin",
+    "nameRu": "Золотистый шевроле",
+    "nameEn": "Chevrolet Gold",
+    "hexCode": "#D9A300"
+  }
+]

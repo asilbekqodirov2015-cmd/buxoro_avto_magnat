@@ -1,0 +1,11 @@
+[
+  {
+    "id": "user-admin",
+    "email": "admin@magnat.uz",
+    "password": "$2b$10$3fEIyu6yOHex3t3zqaFI9Ox1ObXkXGQbsuLhtPh53idH9ZJ16yuj.",
+    "name": "Asilbek Olimov",
+    "role": "ADMIN",
+    "createdAt": "2026-07-19T13:46:32.000Z",
+    "updatedAt": "2026-07-19T13:46:32.000Z"
+  }
+]

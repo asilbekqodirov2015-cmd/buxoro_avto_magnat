@@ -1,0 +1,13 @@
+[
+  {
+    "bankName": "SQB",
+    "interestRate": 20,
+    "minDownPayment": 25,
+    "termMonths": 60,
+    "minInterestRate": 20,
+    "maxInterestRate": 24,
+    "minTermMonths": 12,
+    "maxTermMonths": 60,
+    "id": "cred-1784470269340"
+  }
+]

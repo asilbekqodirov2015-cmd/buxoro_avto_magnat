@@ -1,0 +1,14 @@
+[
+  {
+    "name": "asdasdasd",
+    "phone": "+998123123131",
+    "carId": "car-1784470053655",
+    "bankId": "cred-1784470269340",
+    "downPayment": "50% (110 820 080 so'm)",
+    "termMonths": 12,
+    "monthlyPayment": 10265763,
+    "status": "REJECTED",
+    "id": "ca-1784470313554",
+    "createdAt": "2026-07-19T14:11:53.554Z"
+  }
+]

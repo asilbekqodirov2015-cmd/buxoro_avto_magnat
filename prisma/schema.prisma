@@ -1,0 +1,183 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum Availability {
+  IN_STOCK
+  RESERVED
+  OUT_OF_STOCK
+}
+
+enum Transmission {
+  MANUAL
+  AUTOMATIC
+  ROBOT
+}
+
+enum FuelType {
+  PETROL
+  GAS
+  DIESEL
+  ELECTRIC
+  HYBRID
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  EVALUATED
+  COMPLETED
+  CANCELLED
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Brand {
+  id        String   @id @default(uuid())
+  name      String   @unique
+  logo      String?
+  cars      Car[]
+  createdAt DateTime @default(now())
+}
+
+model Category {
+  id        String   @id @default(uuid())
+  nameUz    String
+  nameRu    String
+  nameEn    String
+  cars      Car[]
+  createdAt DateTime @default(now())
+}
+
+model Color {
+  id        String   @id @default(uuid())
+  nameUz    String
+  nameRu    String
+  nameEn    String
+  hexCode   String   @unique
+  cars      Car[]
+  createdAt DateTime @default(now())
+}
+
+model Car {
+  id             String             @id @default(uuid())
+  vin            String             @unique
+  name           String             // Base name, e.g. "Malibu 2 Turbo"
+  descriptionUz  String             @db.Text
+  descriptionRu  String             @db.Text
+  descriptionEn  String             @db.Text
+  price          Float
+  discount       Float              @default(0) // Discount amount
+  availability   Availability       @default(IN_STOCK)
+  year           Int
+  engine         String             // e.g. "2.0L Turbo"
+  transmission   Transmission       @default(AUTOMATIC)
+  fuelType       FuelType           @default(PETROL)
+  horsepower     Int
+  stockCount     Int                @default(1)
+  mainImage      String             // Path/URL to main image
+  images         String[]           // Extra image paths/URLs
+  videoUrl       String?
+  priceListUrl   String?
+  colorImages    String?            // JSON string containing color-to-image mapping
+  
+  brandId        String
+  brand          Brand              @relation(fields: [brandId], references: [id])
+  categoryId     String
+  category       Category           @relation(fields: [categoryId], references: [id])
+  colorId        String
+  color          Color              @relation(fields: [colorId], references: [id])
+  
+  testDrives     TestDriveRequest[]
+  createdAt      DateTime           @default(now())
+  updatedAt      DateTime           @updatedAt
+}
+
+model TestDriveRequest {
+  id        String        @id @default(uuid())
+  carId     String
+  car       Car           @relation(fields: [carId], references: [id])
+  name      String
+  phone     String
+  date      DateTime
+  status    RequestStatus @default(PENDING)
+  notes     String?
+  createdAt DateTime      @default(now())
+}
+
+model TradeInRequest {
+  id             String        @id @default(uuid())
+  name           String
+  phone          String
+  carBrand       String
+  carModel       String
+  carYear        Int
+  mileage        Int
+  estimatedPrice Float?
+  images         String[]
+  status         RequestStatus @default(PENDING)
+  notes          String?
+  createdAt      DateTime      @default(now())
+}
+
+model CreditProgram {
+  id             String   @id @default(uuid())
+  bankName       String
+  interestRate   Float    // e.g. 18.5 for 18.5%
+  minDownPayment Float    // percentage, e.g. 10 for 10%
+  termMonths     Int      // loan term max in months, e.g. 60
+  maxAmount      Float?
+  isPromo        Boolean  @default(false)
+  createdAt      DateTime @default(now())
+}
+
+model News {
+  id        String   @id @default(uuid())
+  titleUz   String
+  titleRu   String
+  titleEn   String
+  contentUz String   @db.Text
+  contentRu String   @db.Text
+  contentEn String   @db.Text
+  image     String
+  createdAt DateTime @default(now())
+}
+
+model Promotion {
+  id            String   @id @default(uuid())
+  titleUz       String
+  titleRu       String
+  titleEn       String
+  descriptionUz String   @db.Text
+  descriptionRu String   @db.Text
+  descriptionEn String   @db.Text
+  image         String
+  discountValue Float    @default(0) // dynamic description or percentage
+  startDate     DateTime
+  endDate       DateTime
+  createdAt     DateTime @default(now())
+}
+
+model Setting {
+  id    String @id @default(uuid())
+  key   String @unique
+  value String @db.Text
+}
